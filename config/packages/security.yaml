@@ -1,0 +1,43 @@
+# config/packages/security.yaml
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    # providers:
+    #    app_user_provider:
+    #        entity:
+    #            class: App\Entity\User
+    #            property: email
+       # used to reload user from session & other features (e.g. switch_user)
+    providers:
+        custom_user_provider:
+            id: App\Security\UserProvider
+
+    firewalls:
+        login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            # provider: app_user_provider  # Fournisseur d'utilisateurs
+            provider: custom_user_provider
+
+
+        api:
+            pattern: ^/api
+            stateless: true
+            entry_point: jwt
+            jwt: ~
+            logout:
+                path: api_token_invalidate
+            refresh_jwt:
+                check_path: /api/token/refresh
+
+    access_control:
+        - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
+        - { path: ^/api/token/refresh, roles: PUBLIC_ACCESS }
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api,roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/(login|token/refresh), roles: PUBLIC_ACCESS }
