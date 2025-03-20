@@ -23,4 +23,4 @@ class TransactionCreatedDTO
         public readonly ?int $transactionCategory,
         
     ) {}
-}
+}       

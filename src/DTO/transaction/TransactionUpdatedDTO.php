@@ -11,6 +11,5 @@ class TransactionUpdatedDTO
 
         #[Assert\Type("int")] public readonly ?int $amount,
 
-        #[Assert\Type("int")] public readonly ?int $transactionCategory
     ) {}
 }

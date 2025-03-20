@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/transactions/stats')]
+#[Route('/transaction-stats')]
 class TransactionsStatsController extends AbstractController
 {
     #[Route('/total/{year}/{month}', name: 'app_transaction_total_by_month', methods: ['GET'])]

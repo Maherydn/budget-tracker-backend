@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route("/api/user", name: "user")]
+#[Route("/user", name: "user")]
 class UserController extends AbstractController
 {
     #[Route("/create", name: ".create", methods: ["POST"])]

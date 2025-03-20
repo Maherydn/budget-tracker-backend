@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route("/transaction", name: "transaction")]
+#[Route("/api/transaction", name: "transaction")]
 class TransactionController extends AbstractController
 {
     #[Route("/create", name: ".create", methods: ["POST"])]
@@ -26,7 +26,9 @@ class TransactionController extends AbstractController
             $transactionCreateDTO
         );
 
+        $transaction->setUser($this->getUser());
         $transaction->setCreatedAtValue();
+
         $em->persist($transaction);
         $em->flush();
 

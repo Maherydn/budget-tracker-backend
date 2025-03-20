@@ -30,10 +30,7 @@ class TransactionService
         Transaction $transaction,
         TransactionUpdatedDTO $transactionUpdatedDTO
     ): Transaction {
-        return $this->mapDTOToTransaction(
-            $transaction,
-            $transactionUpdatedDTO
-        );
+        return $this->mapDTOToTransaction($transaction, $transactionUpdatedDTO);
     }
 
     private function mapDTOToTransaction(
@@ -46,7 +43,7 @@ class TransactionService
 
         $properties = [
             "amount" => "setAmount",
-            "transactionCategory"=> "setTransactionCategory",
+            "transactionCategory" => "setTransactionCategory",
             "description" => "setDescription",
         ];
 
